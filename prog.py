@@ -18,12 +18,14 @@ def input_int(prompt):
 
 player_horse["name"] = input("Vad ska din häst heta: ")
 print("Din häst har speed och agility, max 6 i en stat, max 8 totalt.")
+def input_clamp(stat_name, promt, clamp = 6):
+    while player_horse[stat_name] < 1 or player_horse[stat_name] > clamp:
+        player_horse[stat_name] = input_int(promt)
+
 stats_ok = False
-while stats_ok == False:
-    while player_horse["speed"] < 1 or player_horse["speed"] > 6:
-        player_horse["speed"] = input_int("Hur snabb är din häst(1-6): ")
-    while player_horse["agility"] < 1 or player_horse["agility"] > 6:
-        player_horse["agility"] = input_int("Hur smidig är din häst(1-6): ")
+while stats_ok == False:    
+    input_clamp("speed", "hur snabb är din häst(1-6): ")
+    input_clamp("agility", "hur smidig är din häst(1-6): ")
 
     if player_horse["speed"] + player_horse["agility"] == 8:
         stats_ok = True
